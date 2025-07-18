@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diani - Fly-In Safaris | Patmac Safaris</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #e67e22;
+            --secondary-color: #2ecc71;
+            --dark-color: #333;
+            --light-color: #f4f4f4;
+            --danger-color: #e74c3c;
+            --success-color: #28a745;
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--primary-color);
+        }
+        
+        /* Dropdown Styles */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1523805009345-7448845a9e53?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            margin-top: 60px;
+            text-align: center;
+        }
+        
+        .page-banner h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .page-banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Packages Section */
+        .packages {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark-color);
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #777;
+            font-size: 1.1rem;
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .package-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .package-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .package-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .package-card:hover .package-img img {
+            transform: scale(1.05);
+        }
+        
+        .package-details {
+            padding: 20px;
+        }
+        
+        .package-details h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+        
+        .package-details p {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            background-color: #d35400;
+        }
+        
+        .btn.secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn.secondary:hover {
+            background-color: #27ae60;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            padding-left: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .footer-links a:hover {
+            color: #fff;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #d35400;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #777;
+            z-index: 10;
+        }
+        
+        .booking-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Details Modal Specific Styles */
+        .modal-details {
+            padding: 20px;
+        }
+
+        .details-img {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .details-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-content {
+            line-height: 1.8;
+        }
+
+        .details-tabs {
+            display: flex;
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .itinerary-day {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .itinerary-day h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        /* Table Styles */
+        .itinerary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .itinerary-table th,
+        .itinerary-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .itinerary-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .itinerary-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .itinerary-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .includes-excludes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .includes, .excludes {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .includes h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .excludes h4 {
+            color: var(--danger-color);
+            margin-bottom: 10px;
+        }
+
+        .includes ul, .excludes ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .includes ul li, .excludes ul li {
+            margin-bottom: 5px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .includes ul li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .excludes ul li:before {
+            content: '\f00d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--danger-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .packages-grid {
+                gap: 20px;
+            }
+            
+            .page-banner {
+                height: 250px;
+            }
+            
+            .page-banner h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: none;
+            }
+            
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+            
+            .page-banner {
+                height: 200px;
+            }
+            
+            .page-banner h1 {
+                font-size: 2rem;
+            }
+            
+            .page-banner p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .includes-excludes {
+                grid-template-columns: 1fr;
+            }
+            
+            .details-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab-button {
+                flex: 1;
+                min-width: 120px;
+                font-size: 13px;
+                padding: 10px 15px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .details-img {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-banner {
+                height: 180px;
+            }
+            
+            .page-banner h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title p {
+                font-size: 1rem;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-img {
+                height: 180px;
+            }
+            
+            .package-details h3 {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+            
+            /* Stack table on very small screens */
+            .itinerary-table,
+            .itinerary-table thead,
+            .itinerary-table tbody,
+            .itinerary-table th,
+            .itinerary-table td,
+            .itinerary-table tr {
+                display: block;
+            }
+
+            .itinerary-table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            .itinerary-table tr {
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                padding: 10px;
+                border-radius: 8px;
+                background-color: #fff;
+            }
+
+            .itinerary-table td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .itinerary-table td:before {
+                content: attr(data-label) ": ";
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                text-align: left;
+                font-weight: bold;
+                color: var(--primary-color);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                PATMAC SAFARIS
+            </a>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul id="mainMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="fly-in-safaris.html">Fly-In Safaris <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="diani.html" class="active">Diani<i class="fas fa-chevron-right"></i></a>
+                            <a href="masai mara.html">Masai Mara<i class="fas fa-chevron-right"></i></a>
+                            <a href="amboseli.html">Amboseli<i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="by-road-safaris.html">By Road Safaris <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="masai mara.html">Masai Mara</a>
+                            <a href="amboseli.html">Amboseli</a>
+                        </div>
+                    </li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <!-- Packages Section -->
+    <section class="packages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Exclusive Diani Packages</h2>
+                <p>Experience luxury beachfront accommodations with world-class amenities</p>
+            </div>
+            
+            <div class="packages-grid">
+                <!-- Package 1 -->
+                <div class="package-card">
+                    <div class="package-img">
+                        <img src="https://images.unsplash.com/photo-1590523278191-995cbcda646b?q=80&w=2069&auto=format&fit=crop" alt="Diamonds Leisure Beach">
+                    </div>
+                    <div class="package-details">
+                        <h3>Diamonds Leisure Beach and Golf Resort</h3>
+                        <p>Experience luxury beachfront accommodations with world-class golfing facilities</p>
+                        <div class="btn-container">
+                            <a href="#" class="btn view-details" data-package="diamonds">View Details</a>
+                            <a href="#" class="btn secondary book-now" data-package="Diamonds Leisure Beach and Golf Resort">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Package 2 -->
+                <div class="package-card">
+                    <div class="package-img">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop" alt="Maji Boutique Hotel">
+                    </div>
+                    <div class="package-details">
+                        <h3>Maji Boutique Hotel Resident Flying Package</h3>
+                        <p>Intimate boutique experience with personalized service for Kenya residents</p>
+                        <div class="btn-container">
+                            <a href="#" class="btn view-details" data-package="maji">View Details</a>
+                            <a href="#" class="btn secondary book-now" data-package="Maji Boutique Hotel Resident Flying Package">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Package 3 -->
+                <div class="package-card">
+                    <div class="package-img">
+                        <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?q=80&w=2070&auto=format&fit=crop" alt="Diani Sea Resort">
+                    </div>
+                    <div class="package-details">
+                        <h3>DIANI SEA RESORT FLYING PACKAGE</h3>
+                        <p>Combine beach and safari with this exclusive resident package</p>
+                        <div class="btn-container">
+                            <a href="#" class="btn view-details" data-package="mara">View Details</a>
+                            <a href="#" class="btn secondary book-now" data-package="Diani Sea Resort Flying Package">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                                <p>Patmac is a passionate traveler and expert in the travel industry, committed to making exploration enjoyable and accessible for others. With a background in creating distinctive travel adventures, Patmac has curated countless itineraries that reveal both hidden gems and must-see destinations.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="fly-in-safaris.html"><i class="fas fa-chevron-right"></i> Fly-In Safaris</a></li>
+                    <li><a href="by-road-safaris.html"><i class="fas fa-chevron-right"></i> By Road Safaris</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</a></li>
+                    <li><a href="tel:+254795183903"><i class="fas fa-phone"></i> +254 795 183 903</a></li>
+                    <li><a href="mailto:info@patmacsafaris.com"><i class="fas fa-envelope"></i> info@patmacsafaris.com</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe for the latest updates on our safari packages and special offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Patmac Safaris. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form class="booking-form">
+                <h2>Book Your Safari</h2>
+                <div class="form-group">
+                    <label for="package">Selected Package</label>
+                    <input type="text" id="package" class="form-control" readonly>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="adults">Adults</label>
+                        <input type="number" id="adults" class="form-control" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="children">Children</label>
+                        <input type="number" id="children" class="form-control" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="checkin">Check-in Date</label>
+                        <input type="date" id="checkin" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout">Check-out Date</label>
+                        <input type="date" id="checkout" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nationality">Nationality/Residency Status</label>
+                    <select id="nationality" class="form-control" required>
+                        <option value="">Select your status</option>
+                        <option value="resident">Kenyan Resident</option>
+                        <option value="citizen">Kenyan Citizen</option>
+                        <option value="eastafrica">East African Resident</option>
+                        <option value="international">International Visitor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Special Requirements</label>
+                    <textarea id="message" class="form-control" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method*</label>
+                    <div style="display: flex; gap: 15px; margin-top: 10px;">
+                        <div>
+                            <input type="radio" id="mpesa" name="paymentMethod" value="mpesa" checked>
+                            <label for="mpesa">M-Pesa</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="card" name="paymentMethod" value="card">
+                            <label for="card">Credit/Debit Card</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Submit Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-details">
+                <div class="details-img">
+                    <img src="" alt="Package Image" id="detailImage">
+                </div>
+                <h2 id="detailTitle"></h2>
+                <div class="details-content">
+                    <p id="detailDescription"></p>
+                    
+                    <div class="details-tabs">
+                        <button class="tab-button active" data-tab="itinerary">Itinerary</button>
+                        <button class="tab-button" data-tab="includes">Includes & Excludes</button>
+                    </div>
+
+                    <div class="tab-content active" id="itinerary-content">
+                        <div id="itinerary-details"></div>
+                    </div>
+
+                    <div class="tab-content" id="includes-content">
+                        <div class="includes-excludes">
+                            <div class="includes">
+                                <h4><i class="fas fa-check-circle"></i> Package Includes</h4>
+                                <ul id="package-includes"></ul>
+                            </div>
+                            <div class="excludes">
+                                <h4><i class="fas fa-times-circle"></i> Package Excludes</h4>
+                                <ul id="package-excludes"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('nav ul');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            menuToggle.innerHTML = navMenu.classList.contains('show') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Dropdown Handling
+        document.querySelectorAll('.dropdown > a').forEach(dropdown => {
+            dropdown.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const dropdownParent = e.target.parentElement;
+                    dropdownParent.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Package Details
+        const packageDetails = {
+            diamonds: {
+                title: "Diamonds Leisure Beach and Golf Resort",
+                image: "https://images.unsplash.com/photo-1590523278191-995cbcda646b?q=80&w=2069&auto=format&fit=crop",
+                description: "Diamonds Leisure Lodge Beach and Golf Resort, situated on the stunning Diani South Coast, boasts the longest stretch of pristine white sandy beach in Kenya. This tropical paradise features towering palm trees swaying gently over crystal-clear blue waters, creating a picturesque backdrop for relaxation and adventure. The impressive expanse of vibrant coral reefs, revealed during low tide, adds to the allure of Diani Beach, making it one of the most desirable destinations for travelers seeking both tranquility and excitement in a breathtaking natural setting.",
+                itinerary: [
+                    {
+                        day: "Day 1",
+                        title: "Nairobi-Diani beach",
+                        description: "Arrive at Wilson Airport for your flight to Diani Beach, which takes about 1 hour and 15 minutes. After landing, a welcoming driver will take you to the Leisure Hotel, where you can check in and enjoy a tasty lunch in a peaceful beach setting. Spend the afternoon unwinding on the sandy beach or by the pool, enjoying the tropical ambiance. As the day ends, treat yourself to a lovely dinner at the hotel before settling in for a restful night.",
+                        hasTable: false
+                    },
+                    {
+                        day: "Day 2",
+                        title: " Diani beach",
+                        description: "Enjoy a relaxing day at the hotel, where you can indulge in a variety of optional activities tailored to your interests. Take leisurely beach walks along the shore, explore the underwater world with scuba diving, or engage in thrilling water sports. For a more serene experience, consider a scenic boat ride or simply bask in the sun by the pool. Golf enthusiasts can hit the greens for a round of golf. After a fulfilling day, savor a delightful dinner at the hotel and unwind with a restful overnight stay.",
+                        hasTable: false
+                    },
+                    {
+                        day: "Day 3",
+                        title: " Diani-Nairobi",
+                        description: "After your meals, head to Ukunda Airstrip for your scheduled flight to Wilson Airport in Nairobi",
+                        hasTable: true,
+                        tableData: {
+                            headers: ["From", "To", "Price Ksh"],
+                            rows: [
+                                ["Apr 25", "Jun 30", "63,180"],
+                                ["jul 1", "Sep 30", "72,520"],
+                                ["Oct 1", "Dec 15", "70,650"],
+                            ]
+                        }
+                    }
+                ],
+                includes: [
+                    "nights' 2 accommodation in Bustani Garden room",
+                    "Meals on all-inclusive basis",
+                    "Return flights from Wilson Airport to Ukunda Airport",
+                    "Return airport transfers from Ukunda Airport to Diani Sea Resort",
+                    "Breakfast‚ lunch and dinner are served at the Diani Restaurant and a Light lunch menu is served at the Coral beach bar",
+                    "soft drinks‚ fruit juices‚ coffee and tea‚ local beer‚ house wine and selected cocktails",
+                    "Wi-Fi Internet in all rooms and public areas",
+                    "Sunshades sun loungers by the pool and on the beach"
+                ],
+                excludes: [
+                    "Any other item (s) not mentioned under inclusions",
+                    
+                ]
+            },
+            maji: {
+                title: "Maji Boutique Hotel Resident Flying Package",
+                image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
+                description: "Maji Boutique Hotel, a multi-award-winning establishment in Diani, is ranked as the top luxury hotel in Kenya by TripAdvisor. Its vibrant decor harmoniously combines traditional and contemporary elements, featuring local natural materials like driftwood, colonial and Swahili antiques, along with authentic tribal crafts and modern African artwork, offering a captivating experience of African culture.",
+                itinerary: [
+                    {
+                        day: "Day 1",
+                        title: "Nairobi-Diani",
+                        description: "Arrive at Wilson Airport, check in for your flight to Diani Beach, which lasts about 1 hour and 15 minutes. Once you land, a welcoming representative will take you to Maji Beach boutique Hotel for check-in and some relaxation. Enjoy the beautiful scenery and a tasty dinner before settling in for the night.",
+                        hasTable: false
+                    },
+                    {
+                        day: "Day 2",
+                        title: "Day 2: Maji beach boutique hotel",
+                        description: "Experience a perfect day at the Maji Hotel, where you can indulge in a variety of leisure activities. Stroll along picturesque beach walks, embark on exhilarating boat rides, or dive into the vibrant underwater world with scuba diving and water sports. For golf enthusiasts, enjoy a round on the greens, or simply relax and bask in the sun on the idyllic beach. Your stay includes full board accommodation, ensuring a delightful culinary experience throughout your visit. Enjoy the ultimate getaway at Maji Hotel!",
+                        hasTable: false
+                    },
+                    {
+                        day: "Day 3",
+                        title: " Diani-Nairobi",
+                        description: "After your meals, head to Ukunda airstrip for your scheduled flight to Wilson Airport in Nairobi.",
+                        hasTable: true,
+                        tableData: {
+                            headers: ["From", "To", "Price Ksh"],
+                            rows: [
+                                ["Apri 1", "Jun 30", "86,600"],
+                                ["Jul 1", "Aug 31", "91,250"],
+                                ["Sep 1", "Oct 31", "86,600"],
+                                ["Oct 1", "Dec 15", "86,600"],
+                            ]
+                        }
+                    }
+                ],
+                includes: [
+                    "All inclusive 2 nights accommodation in deluxe ocean view room",
+                    "Return flights ",
+                    "Transfer to and from Maji boutique beach hotel",
+    
+                ],
+                excludes: [
+                    "Airport transfers in Nairobi",
+                    "Items of personal use",
+                   
+                ]
+            },
+            mara: {
+                title: "DIANI SEA RESORT FLYING PACKAGE",
+                image: "https://images.unsplash.com/photo-1596436889106-be35e843f974?q=80&w=2070&auto=format&fit=crop",
+                description: "Diani Resort, nestled on breathtaking unspoiled white sandy beaches along the picturesque south coast, offers a serene escape complemented by a friendly staff that welcomes guests with warm smiles, ensuring an unforgettable experience. Surrounded by lush coconut palms and a vibrant array of exotic trees and flowers, the hotel features 170 diverse accommodations, including superior rooms with tranquil garden views, Bahari rooms that provide stunning sea or pool vistas, and luxurious ocean suites designed for ultimate comfort. With its idyllic setting and attentive service, Diani Resort is the perfect destination for relaxation and rejuvenation.",
+                itinerary: [
+                    {
+                        day: "Day 1",
+                        title: "Nairobi- Diani",
+                        description: "Arrive at Wilson Airport on time for your scheduled flight to Ukunda Airstrip in Diani, which takes approximately 1 hour and 15 minutes. Upon arrival, you will be warmly greeted by our friendly team, who will assist you with your transfer to the Diani Sea resort. After checking in, you can relax and enjoy a delicious dinner at the hotel, followed by a restful overnight stay in your comfortable accommodations.",
+                        hasTable: false
+                    },
+                    {
+                        day: "Day 2",
+                        title: "Diani sea resort",
+                        description: "Spend a delightful day at the Diani Sea resort, where you can indulge in a variety of beach activities such as diving in the vibrant coral reefs, embarking on exciting boat trips, and experiencing the thrill of kite surfing. For those who prefer a more leisurely pace, enjoy a round of golf amidst stunning scenery. After a day filled with adventure and relaxation, savor a delicious dinner at the hotel before retiring for a restful overnight stay, surrounded by the soothing sounds of the ocean.",
+                        hasTable: false
+                    },
+                    {
+                        day: "Day 3",
+                        title: "Diani- Nairobi",
+                        description: "After your meals, head to Ukunda Airstrip for your scheduled flight to Wilson Airport in Nairobi.",
+                        hasTable: true,
+                        tableData: {
+                            headers: ["From", "To", "Price Ksh"],
+                            rows: [
+                                ["June 21", "Jul 8", "56,000"],
+                                ["Jul 9", "Sep 30", "59,850"],
+                                ["Oct 1", "Dec 20", "60,250"],
+                                ["Dec 21", "Jan 4", "80,200"],
+                            ]
+                        }
+                    }
+                ],
+                includes: [
+                    "2 nights' accommodation in a comfort room on an - inclusive basis",
+                    "Return flights from Wilson Airport to Ukunda Airport ",
+                    "Return airport transfers from Ukunda Airport to Diani Sea Resort",
+                   
+                ],
+                excludes: [
+                    "Drinks and other extras",
+                    "Airport transfers in Nairobi ",
+                    "Any other item (s) not mentioned under inclusions",
+                    
+                ]
+            }
+        };
+
+        // Tab Functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tab-button')) {
+                const tabName = e.target.dataset.tab;
+                
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tab-button').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab and corresponding content
+                e.target.classList.add('active');
+                document.getElementById(tabName + '-content').classList.add('active');
+            }
+        });
+
+        // Modal Handling
+        const modals = {
+            booking: document.getElementById('bookingModal'),
+            details: document.getElementById('detailsModal')
+        };
+
+        // Event Listeners
+        document.querySelectorAll('.book-now').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('package').value = btn.dataset.package;
+                showModal('booking');
+            });
+        });
+
+        document.querySelectorAll('.view-details').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const packageId = btn.dataset.package;
+                loadPackageDetails(packageId);
+                showModal('details');
+            });
+        });
+
+        document.querySelectorAll('.close').forEach(btn => {
+            btn.addEventListener('click', () => {
+                hideAllModals();
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                hideAllModals();
+            }
+        });
+
+        // Modal Functions
+        function showModal(modalType) {
+            hideAllModals();
+            modals[modalType].style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideAllModals() {
+            Object.values(modals).forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.style.overflow = 'auto';
+        }
+
+        function loadPackageDetails(packageId) {
+            const details = packageDetails[packageId];
+            
+            // Basic info
+            document.getElementById('detailTitle').textContent = details.title;
+            document.getElementById('detailImage').src = details.image;
+            document.getElementById('detailDescription').textContent = details.description;
+            
+            // Load itinerary
+            const itineraryContainer = document.getElementById('itinerary-details');
+            itineraryContainer.innerHTML = details.itinerary
+                .map(day => {
+                    let dayHtml = `
+                        <div class="itinerary-day">
+                            <h4>${day.day}: ${day.title}</h4>
+                            <p>${day.description}</p>
+                    `;
+                    
+                    // Add table if the day has one
+                    if (day.hasTable && day.tableData) {
+                        dayHtml += `
+                            <table class="itinerary-table">
+                                <thead>
+                                    <tr>
+                                        ${day.tableData.headers.map(header => `<th>${header}</th>`).join('')}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${day.tableData.rows.map(row => `
+                                        <tr>
+                                            ${row.map((cell, index) => `<td data-label="${day.tableData.headers[index]}">${cell}</td>`).join('')}
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        `;
+                    }
+                    
+                    dayHtml += `</div>`;
+                    return dayHtml;
+                }).join('');
+            
+            // Load includes
+            const includesList = document.getElementById('package-includes');
+            includesList.innerHTML = details.includes
+                .map(item => `<li>${item}</li>`)
+                .join('');
+            
+            // Load excludes
+            const excludesList = document.getElementById('package-excludes');
+            excludesList.innerHTML = details.excludes
+                .map(item => `<li>${item}</li>`)
+                .join('');
+            
+            // Reset tabs to first tab
+            document.querySelectorAll('.tab-button').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector('.tab-button[data-tab="itinerary"]').classList.add('active');
+            document.getElementById('itinerary-content').classList.add('active');
+        }
+
+        // Date Validation
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkin').min = today;
+        document.getElementById('checkout').min = today;
+
+        document.getElementById('checkin').addEventListener('change', function() {
+            document.getElementById('checkout').min = this.value;
+        });
+
+        // Form Submission
+        document.querySelector('.booking-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show success message
+            alert('Thank you for your booking request! We will contact you shortly to confirm your reservation and provide payment details.');
+            
+            // Close modal and reset form
+            hideAllModals();
+            e.target.reset();
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            e.target.reset();
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('show');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

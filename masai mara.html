@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATMAC SAFARIS - Luxury Safari Experiences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6741;
+            --secondary-color: #e09e50;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --white: #fff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background-color: var(--white);
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            min-width: 200px;
+            padding: 10px 0;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+            z-index: 1001;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-item {
+            padding: 10px 20px;
+            display: block;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f5f5f5;
+            color: var(--primary-color);
+        }
+        
+        .active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .hero-btn:hover {
+            background-color: #c78a3f;
+            transform: translateY(-3px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .packages {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .package {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .package:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .package-header {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .package-content {
+            display: none;
+            padding: 30px;
+        }
+        
+        .package-content.active {
+            display: block;
+        }
+        
+        .itinerary {
+            margin: 20px 0;
+        }
+        
+        .day {
+            margin-bottom: 20px;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 15px;
+        }
+        
+        .day h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+        
+        .price {
+            background-color: #f9f3e9;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .includes, .excludes {
+            flex: 1;
+            min-width: 250px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .includes h3, .excludes h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .includes ul li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .includes ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .excludes ul li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .excludes ul li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .book-btn {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+            transition: var(--transition);
+        }
+        
+        .book-btn:hover {
+            background-color: #c78a3f;
+        }
+        
+        .book-btn i {
+            margin-right: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: #f9f9f9;
+            padding: 60px 20px;
+            margin: 40px 0;
+        }
+        
+        .testimonial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #ddd;
+            overflow: hidden;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-author h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-rating {
+            color: #f1c40f;
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-col p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--white);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        /* Booking Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalFadeIn 0.4s;
+        }
+        
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8rem;
+            color: #999;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-btn:hover {
+            color: var(--dark-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.2);
+        }
+        
+        .payment-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .payment-option label {
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            transition: var(--transition);
+        }
+        
+        .submit-btn:hover {
+            background-color: #3a5233;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                height: calc(100vh - 70px);
+                padding: 20px;
+                transition: var(--transition);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                overflow-y: auto;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                width: 100%;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .nav-item:hover .dropdown-menu {
+                display: none;
+            }
+            
+            .dropdown-menu.active {
+                display: block;
+            }
+            
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .price {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                height: 50vh;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .package-header {
+                font-size: 1.1rem;
+                padding: 12px 15px;
+            }
+            
+            .package-content {
+                padding: 20px;
+            }
+            
+            .details {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                PATMAC SAFARIS
+            </a>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="fas fa-plane"></i> Fly In Safaris<i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="diani.html" class="dropdown-item active">Diani<i class="fas fa-chevron-right"></i></a></li>
+                         <li><a href="masai maara.html" class="dropdown-item active">Masai Mara<i class="fas fa-chevron-right"></i></a></li>
+                        <li><a href="amboseli.html" class="dropdown-item active">Amboseli<i class="fas fa-chevron-right"></i></a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="fas fa-road"></i> By Road Safaris<i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="masai mara.html" class="dropdown-item active">Masai Mara<i class="fas fa-chevron-right"></i></a></li>
+                        <li><a href="amboseli.html" class="dropdown-item active">Amboseli<i class="fas fa-chevron-right"></i></a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item"><a href="services.html" class="nav-link"><i class="fas fa-concierge-bell"></i> Services</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+    <div class="container">
+        <div class="section-title">
+            <h2>Masai Mara Safari Packages</h2>
+        </div>
+        
+        <div class="packages">
+            <!-- Package 1 -->
+            <div class="package">
+                <div class="package-header" onclick="togglePackage(this)">
+                    <span>3 DAYS MAASAI MARA</span>
+                    <span>+</span>
+                </div>
+                <div class="package-content">
+                    <h2>3 DAYS MAASAI MARA ADVENTURE</h2>
+                    <p>A brief but thrilling safari experience in Kenya's most famous wildlife reserve, perfect for travelers with limited time.</p>
+                    
+                    <div class="itinerary">
+                        <h3>Itinerary</h3>
+                        
+                        <div class="day">
+                            <h4>Day 1: Nairobi to Masai Mara</h4>
+                            <p>Early morning, you will be picked up from your Nairobi residence, hotel, or the International Airport and embark on an exciting journey to the renowned Maasai Mara Game Reserve, passing through the vibrant Maasai town of Narok along the way. Upon arrival at your  tented camp, you will be greeted with a delicious lunch that sets the stage for your adventure. Afterward, prepare for your first thrilling afternoon game drive, where you will have the opportunity to spot the majestic "BIG FIVE" and an array of other wildlife that inhabit the expansive plains. As the day winds down, enjoy a delightful dinner and retreat to your comfortable accommodations at MARA SOPA.</p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 2: Mara</h4>
+                            <p>Start your day with an exhilarating early morning game drive in the reserve, where the dawn light brings wildlife to life in their natural habitat, offering you the best chance to witness animals in action. After a thrilling morning of game viewing, indulge in a delightful picnic breakfast amidst the stunning scenery, soaking in the sights and sounds of nature all around you. Following this, return to your camp for a leisurely lunch, recharging for an exciting afternoon game drive that promises more wildlife encounters. As the day winds down, enjoy a delicious dinner at the MARA SOPA Lodge, where you can reflect on the day's adventures before settling in for a restful overnight stay.</p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 3: MARA-NAIROBI</h4>
+                            <p> As the sun begins to rise, casting a golden glow over the savannah, embark on your final early morning game drive, where the wildlife awakens and the landscape comes alive with vibrant colors and sounds. After soaking in the breathtaking views and spotting elusive animals, return to your camp for a hearty breakfast, savoring the flavors of the region while reflecting on the unforgettable experiences of your safari. Following breakfast, you'll depart for Nairobi, enjoying the scenic journey back to the city. Anticipate an afternoon arrival, where you'll be dropped off at your chosen city residence, hotel, or the International Airport, concluding your remarkable adventure in the heart of nature.</p>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="details">
+                        <div class="includes">
+                            <h3>Package Includes:</h3>
+                            <ul>
+                                <li>Transportation in a safari minivan with pop-up roof</li>
+                                <li>Services of a professional safari guide</li>
+                                <li>2 nights accommodation in a standard tented camp</li>
+                                <li>Full board (all meals)</li>
+                                <li>Game drives as per itinerary</li>
+                                <li>Park entrance fees</li>
+                                <li>Bottled water during game drives</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="excludes">
+                            <h3>Package Excludes:</h3>
+                            <ul>
+                                <li>International flights</li>
+                                <li>Visa fees</li>
+                                <li>Travel insurance</li>
+                                <li>Personal expenses</li>
+                                <li>Tips and gratuities</li>
+                                <li>Optional activities</li>
+                                <li>Alcoholic and soft drinks</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <button class="book-btn" onclick="openBookingForm('3 DAYS MAASAI MARA ADVENTURE', 580)">
+                        <i class="fas fa-calendar-check"></i> BOOK NOW
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Package 2 -->
+            <div class="package">
+                <div class="package-header" onclick="togglePackage(this)">
+                    <span>7 DAYS SERENA SPECIAL</span>
+                    <span>+</span>
+                </div>
+                <div class="package-content">
+                    <h2>7 DAYS SERENA SPECIAL</h2>
+                    <p>An exclusive week-long safari experience staying at the luxurious Serena lodges and exploring Kenya's most spectacular wildlife areas.</p>
+                    
+                    <div class="itinerary">
+                        <h3>Itinerary</h3>
+                        
+                        <div class="day">
+                            <h4>Day 1: Arrival</h4>
+                            <p>Upon your arrival at Nairobi Airport, Patmac warmly greets you and assists with your transfer to the luxurious Serena Hotel. As you check in, you take a moment to unwind and soak in the serene atmosphere, preparing for the adventure ahead. With your 7-day safari set to begin at Sweetwater’s at dawn, you enjoy a restful evening before settling in for a good night's sleep, eagerly anticipating the wildlife encounters that await you. Bed & breakfast Serena Hotel</p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 2: Nairobi-Sweetwater’s Serena Camp</h4>
+                            <p>Depart Nairobi in the morning and embark on a scenic drive northward, passing through Thika, renowned for its lush pineapple plantations. Arrive at Sweetwater’s in time for a delicious lunch, after which you can spend the afternoon exploring the conservancy, home to a variety of wildlife and stunning landscapes. In the evening, enjoy a delightful dinner at Sweetwater’s Serena Camp, where you will spend the night, all included in your full board meal plan.</p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 3: Sweetwater’s</h4>
+                            <p>Start your day with an exhilarating early morning game drive in the stunning Sweetwater’s Sanctuary, where you can witness the beauty of wildlife awakening to a new day. After a hearty breakfast, take some time to unwind and soak in the serene surroundings before enjoying a delicious lunch. In the afternoon, embark on another exciting game drive, which includes visits to the charming Chimp and Rhino Sanctuaries, offering a unique opportunity to learn about and observe these incredible animals up close. Spend the night at Sweetwater’s Serena Camp, where you'll enjoy full board meals, ensuring a delightful culinary experience throughout your stay.</p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 4: Lake Elementeita</h4>
+                            <p>After a delightful breakfast, embark on a scenic drive to Lake Elementeita, a true haven for bird enthusiasts, where you can observe around 300 different bird species in their natural habitat (265 km). Upon arrival, savor a delicious lunch before indulging in some leisure time. You might choose to take a refreshing swim in the lodge's pool or treat yourself to a soothing massage to unwind. As the day comes to a close, enjoy a cozy overnight stay at the Lake Elementeita Serena Lodge, where you'll be treated to full board meals, ensuring a delightful culinary experience throughout your stay.</p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 5 & 6: Masai Mara</h4>
+                            <p>After enjoying a hearty breakfast, set off for the iconic Maasai Mara, where the connection to nature deepens as you enter this renowned wildlife reserve. Experience the thrill of the safari from the comfort of our custom-built vehicles, designed for optimal viewing. Guided by our knowledgeable experts, you'll traverse the stunning landscapes, witnessing the majestic presence of elephants, lions, and cheetahs, along with a plethora of other unique wildlife that call the Mara home. Each game drive, lasting up to two hours, promises a fresh adventure, with the best wildlife sightings often occurring during the early morning or late afternoon. As the sun sets, return to the serene comfort of Serena Lodge for dinner and a restful overnight stay, all while enjoying full board meals.</p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 7: Masai Mara</h4>
+                           <p>After breakfast drive to Nairobi (335 km - approximately 5 hours); Arrive on time for arranged Lunch afterwards transferred to the airport for your outbound flight.</p>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="details">
+                        <div class="includes">
+                            <h3>Package Includes:</h3>
+                            <ul>
+                                <li>Meet & Greet (transfers)</li>
+                                <li>Accommodation and meals as per the itinerary</li>
+                                <li>Shared safari vehicle with pop up roof</li>
+                                <li>Guaranteed window seat</li>
+                                <li>English speaking or bi-lingual driver-guide</li>
+                                <li>One litre drinking water per day</li>
+                                <li>Park entry and conservation fees</li>
+                                <li>Government taxes and VAT</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="excludes">
+                            <h3>Package Excludes:</h3>
+                            <ul>
+                                <li>International flights</li>
+                                <li>Visa fees</li>
+                                <li>Travel insurance</li>
+                                <li>Personal expenses</li>
+                                <li>Tips and gratuities</li>
+                                <li>Optional activities (balloon safari, cultural visits)</li>
+                                <li>Alcoholic and soft drinks</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <button class="book-btn" onclick="openBookingForm('7 DAYS SERENA SPECIAL', 3390)">
+                        <i class="fas fa-calendar-check"></i> BOOK NOW
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Package 3 -->
+            <div class="package">
+                <div class="package-header" onclick="togglePackage(this)">
+                    <span>MIGRATION WAVE – LUXURY MARA ENKAJI</span>
+                    <span>+</span>
+                </div>
+                <div class="package-content">
+                    <h2>MIGRATION WAVE – LUXURY MARA ENKAJI</h2>
+                    <p>Experience the breathtaking Great Migration in ultimate luxury at the exclusive Mara Enkaji camp. Witness one of nature's most spectacular events in style.</p>
+                    
+                    <div class="itinerary">
+                        <h3>Itinerary</h3>
+                        
+                        <div class="day">
+                            <h4>Day 1: Nairobi - Maasai Mara Game Reserve</h4>
+                            <p>In the early morning, you will be picked up from your Nairobi residence, hotel, or the International Airport and embark on a scenic drive to the renowned Maasai Mara Game Reserve, passing through the vibrant Maasai town of Narok. Upon arrival at your luxurious tented camp, a delicious lunch will be served, setting the stage for an exciting afternoon. You'll then set out on your first game drive, where you'll have the opportunity to spot the “BIG FIVE” and a variety of other wildlife that inhabit the expansive plains. After an exhilarating day, enjoy a delightful dinner and settle in for the night at Mara Enkaji, surrounded by the sounds of the African wilderness.</p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 2: Maasai Mara Game Reserve</h4>
+                            <p>Experience the thrill of an early morning game drive in the reserve, when the wildlife is most active and you can witness animals in their natural hunting habitat. As the sun rises, embark on this unforgettable adventure and immerse yourself in the breathtaking scenery. After a morning of exploration, savor a delicious picnic breakfast amidst the stunning backdrop of nature, watching game roam freely around you. Return to your luxurious camp for a delightful lunch, where opulence meets comfort. In the afternoon, set out for another exciting game drive, giving you more opportunities to encounter the majestic wildlife of the region. Conclude your day with a sumptuous dinner and a restful overnight stay at the exquisite MARA ENKAJI Camp, where every detail is designed to enhance your safari experience.</p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 3: Masai Mara</h4>
+                            <p>Experience an unforgettable full day in the Maasai Mara, staying at the luxurious Mara Enkaji camp, FULL BOARD. Begin your adventure with a breathtaking hot air balloon safari at dawn, soaring over the stunning savannah and witnessing the wildlife from above. After landing, enjoy a delightful bush breakfast amidst the picturesque landscape. In the afternoon, embark on a guided nature walk led by knowledgeable local guides, where you can explore the diverse flora and fauna up close. This immersive experience will deepen your appreciation for the Maasai Mara’s natural beauty and rich wildlife, making for a truly memorable day. </p>
+                        </div>
+                        
+                        <div class="day">
+                            <h4>Day 4: Maasai Mara Game Reserve - Nairobi</h4>
+                            <p>After enjoying a hearty breakfast at Enkaji, depart from Mara and make your way to the capital city for your scheduled drop-off. The journey will take you through scenic landscapes, allowing you to soak in the beauty of the surroundings before reaching your destination.</p>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="details">
+                        <div class="includes">
+                            <h3>Package Includes:</h3>
+                            <ul>
+                                <li>Meet & Greet (transfers)</li>
+                                <li>Accommodation and meals as per the itinerary</li>
+                                <li>Shared safari vehicle with pop up roof</li>
+                                <li>Guaranteed window seat</li>
+                                <li>Park entry and conservation fees</li>
+                                <li>Government taxes and VAT</li>
+                                <li>English speaking or bi-lingual driver-guide</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="excludes">
+                            <h3>Package Excludes:</h3>
+                            <ul>
+                                <li>International flights</li>
+                                <li>Visa fees</li>
+                                <li>Travel insurance</li>
+                                <li>Personal expenses</li>
+                                <li>Premium alcoholic beverages</li>
+                                <li>Tips and gratuities</li>
+                                <li>Spa treatments</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <button class="book-btn" onclick="openBookingForm('MIGRATION WAVE – LUXURY MARA ENKAJI', 2170)">
+                        <i class="fas fa-calendar-check"></i> BOOK NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Guests Say</h2>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Robert Johnson</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "Our 3-day Masai Mara safari with Patmac Safaris was absolutely incredible! We saw all of the Big Five and our guide was extremely knowledgeable. The accommodations were comfortable and the food was delicious. Can't wait to return!"
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Sarah Williams</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "The 7-day Serena Special was worth every penny. The luxury lodges were stunning, and we experienced wildlife encounters we'll never forget. The hot air balloon ride over the Mara was the highlight of our African adventure!"
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>David Chen</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "Witnessing the Great Migration from the luxury of Mara Enkaji was a once-in-a-lifetime experience. The staff went above and beyond to make our stay perfect. The attention to detail in every aspect of the safari was impressive."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>About us</h3>
+                                <p>Patmac is a passionate traveler and expert in the travel industry, committed to making exploration enjoyable and accessible for others. With a background in creating distinctive travel adventures, Patmac has curated countless itineraries that reveal both hidden gems and must-see destinations.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Fly In Safaris</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> By Road Safaris</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Safari Packages</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> 3 Days Masai Mara</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> 7 Days Serena Special</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Migration Wave</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Amboseli Adventure</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Diani Beach </a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i>Nairobi, Kenya</p>
+                <p><i class="fas fa-phone"></i> +254 795 183 903</p>
+                <p><i class="fas fa-envelope"></i> info@patmacsafaris.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 6:00 PM</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 PATMAC SAFARIS. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Booking Form Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeBookingForm()">&times;</span>
+            <h2 id="bookingTitle">Book Your Safari</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name*</label>
+                    <input type="text" id="fullName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number*</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="travelDate">Preferred Travel Date*</label>
+                    <input type="date" id="travelDate" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Number of Guests*</label>
+                    <input type="number" id="guests" class="form-control" min="1" max="20" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialRequests">Special Requests</label>
+                    <textarea id="specialRequests" class="form-control" rows="3" placeholder="Any dietary restrictions, special needs, or additional requests..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Payment Method*</label>
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <input type="radio" id="mpesa" name="paymentMethod" value="mpesa" checked>
+                            <label for="mpesa">M-Pesa</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="card" name="paymentMethod" value="card">
+                            <label for="card">Credit/Debit Card</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="bank" name="paymentMethod" value="bank">
+                            <label for="bank">Bank Transfer</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <input type="hidden" id="packageName" name="packageName">
+                <input type="hidden" id="packagePrice" name="packagePrice">
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> CONFIRM BOOKING
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Mobile dropdowns
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        navItems.forEach(item => {
+            if (item.querySelector('.dropdown-menu')) {
+                const link = item.querySelector('.nav-link');
+                
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const dropdown = item.querySelector('.dropdown-menu');
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+        });
+        
+        // Package accordion
+        function togglePackage(element) {
+            const content = element.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            // Close all packages
+            document.querySelectorAll('.package-content').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.package-header span:last-child').forEach(item => {
+                item.textContent = '+';
+            });
+            
+            // Open clicked package if it wasn't already open
+            if (!isActive) {
+                content.classList.add('active');
+                element.querySelector('span:last-child').textContent = '-';
+                
+                // Scroll to the opened package
+                content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        // Open booking form
+        function openBookingForm(packageName, packagePrice) {
+            document.getElementById('bookingTitle').textContent = 'Book: ' + packageName;
+            document.getElementById('packageName').value = packageName;
+            document.getElementById('packagePrice').value = packagePrice;
+            document.getElementById('bookingModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close booking form
+        function closeBookingForm() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target == modal) {
+                closeBookingForm();
+            }
+        }
+        
+        // Form submission handler
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const packageName = document.getElementById('packageName').value;
+            const fullName = document.getElementById('fullName').value;
+            
+            // Show success message
+            alert(`Thank you for your booking, ${fullName}! We have received your request for the ${packageName} package. Our team will contact you shortly to confirm your reservation.`);
+            
+            // Reset form and close modal
+            this.reset();
+            closeBookingForm();
+        });
+        
+       
+    </script>
+</body>
+</html>
